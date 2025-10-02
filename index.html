@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RobotIngu | Portfolio</title>
+  <title>RobotIngu Portfolio</title>
   <style>
     :root {
-      color-scheme: light dark;
-      --accent: #4c7ef3;
-      --bg: #f4f6fb;
-      --text: #202020;
-      --muted: #4a4a4a;
+      --bg: #ffffff;
+      --text: #1b1f24;
+      --muted: #57606a;
+      --accent: #2563eb;
+      --border: #e2e8f0;
+      color-scheme: light;
     }
 
     * {
@@ -23,217 +24,432 @@
       font-family: "Segoe UI", Tahoma, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
     }
 
     header {
-      background: linear-gradient(120deg, var(--accent), #202c5a);
-      color: #fff;
-      padding: 4rem 1.5rem;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.85);
-    }
-
-    nav {
-      background: #fff;
-      padding: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
       position: sticky;
       top: 0;
-      z-index: 10;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
     }
 
-    nav a {
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      font-size: 1.3rem;
+      font-weight: 700;
       color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
     }
 
-    nav a:hover,
-    nav a:focus {
-      text-decoration: underline;
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.25rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus::after {
+      transform: scaleX(1);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      margin: 5px 0;
+      transition: 0.3s ease;
     }
 
     main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem 6rem;
+      padding-bottom: 4rem;
     }
 
     section {
-      margin-bottom: 4rem;
+      padding: 4rem 0;
     }
 
-    section h2 {
-      font-size: 2rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
+    #home {
+      display: flex;
+      align-items: center;
+      min-height: calc(100vh - 80px);
+      padding-top: 6rem;
     }
 
-    .card-grid {
+    .hero {
       display: grid;
       gap: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 16px 32px rgba(37, 99, 235, 0.2);
+    }
+
+    .btn-outline {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 34px rgba(37, 99, 235, 0.24);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .section-intro {
+      max-width: 680px;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .about-grid {
+      display: grid;
+      gap: 2rem;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
 
     .card {
-      background: #fff;
-      border-radius: 14px;
-      padding: 1.5rem;
-      box-shadow: 0 12px 32px rgba(24, 40, 72, 0.12);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 36px rgba(24, 40, 72, 0.16);
+      background: #f8fafc;
+      border-radius: 18px;
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
     }
 
     .card h3 {
+      font-size: 1.15rem;
       margin-bottom: 0.75rem;
-      font-size: 1.3rem;
+      color: var(--accent);
     }
 
-    .card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .contact-list {
+    .card ul {
       list-style: none;
+      display: grid;
+      gap: 0.45rem;
+      color: var(--muted);
+    }
+
+    .projects-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .project-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.8rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.1);
       display: grid;
       gap: 1rem;
     }
 
-    .contact-list li {
-      background: #fff;
-      border-radius: 12px;
-      padding: 1.2rem 1.5rem;
-      box-shadow: 0 8px 24px rgba(20, 32, 60, 0.1);
+    .project-card h3 {
+      font-size: 1.3rem;
     }
 
-    .contact-list span {
-      display: block;
+    .project-card p {
       color: var(--muted);
-      font-size: 0.9rem;
+    }
+
+    .project-card .btn {
+      width: fit-content;
+      padding-inline: 1.1rem;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.65rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text);
+      font-weight: 600;
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .icon-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--accent);
+    }
+
+    .icon-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 14px 32px rgba(37, 99, 235, 0.18);
+    }
+
+    .icon-btn:hover svg {
+      fill: #fff;
     }
 
     footer {
+      padding: 2.5rem 0 3rem;
+      background: #0f172a;
+      color: rgba(248, 250, 252, 0.72);
       text-align: center;
-      padding: 3rem 1.5rem;
-      background: #111b3a;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
     }
 
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: #0f172a;
-        color: #e2e8f0;
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--border);
+        transform: translateY(-200%);
+        transition: transform 0.3s ease;
       }
 
-      nav, .card, .contact-list li {
-        background: #111f3f;
-        box-shadow: 0 10px 28px rgba(5, 10, 18, 0.65);
+      .nav-links.open {
+        transform: translateY(0);
       }
 
-      nav a {
-        color: #cbd5ff;
+      .nav-toggle {
+        display: block;
       }
 
-      header {
-        background: linear-gradient(120deg, #4c7ef3, #111f3f);
+      #home {
+        min-height: auto;
+        padding-top: 4rem;
+      }
+
+      .hero-actions {
+        justify-content: flex-start;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>RobotIngu Lab</h1>
-    <p>Exploring intelligent robotics, human-robot interaction, and smart automation.</p>
+    <div class="container nav-bar">
+      <a class="brand" href="#home">RobotIngu</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
   </header>
 
-  <nav>
-    <a href="#research">Research</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
   <main>
-    <section id="research">
-      <h2>Research</h2>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Embodied AI for Service Robots</h3>
-          <p>Investigating how multi-modal perception enables robots to understand and assist in dynamic indoor environments.</p>
-        </article>
-        <article class="card">
-          <h3>Safe Human-Robot Collaboration</h3>
-          <p>Developing adaptive control systems that keep close-proximity collaboration both efficient and safe.</p>
-        </article>
-        <article class="card">
-          <h3>Assistive Robotics</h3>
-          <p>Designing robotic companions that support daily routines for elderly and mobility-impaired users.</p>
-        </article>
+    <section id="home">
+      <div class="container hero">
+        <h1>Hello, I'm RobotIngu</h1>
+        <p>Robotics Engineer &amp; Researcher focused on bridging intelligent control, perception, and human-centered design. I build systems that collaborate with people and adapt to complex environments.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-outline" href="#contact">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-intro">I explore how autonomous machines can perceive the world, understand human intent, and respond with dexterity. My work combines robotics, AI, and human-robot interaction to create meaningful, dependable systems.</p>
+        <div class="about-grid">
+          <article class="card">
+            <h3>Profile</h3>
+            <p>Robotics engineer with practical experience delivering research prototypes into production-ready solutions. Passionate about advancing embodied intelligence and building teams that ship.</p>
+          </article>
+          <article class="card">
+            <h3>Education</h3>
+            <ul>
+              <li>M.S. Robotics Engineering, Seoul Tech University</li>
+              <li>B.S. Mechanical Engineering, KAIST</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Research Areas</h3>
+            <ul>
+              <li>Embodied AI and autonomous planning</li>
+              <li>Human-robot collaboration</li>
+              <li>Assistive and service robotics</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 
     <section id="projects">
-      <h2>Projects</h2>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Project Atlas</h3>
-          <p>A modular robot platform for warehouse automation, focusing on real-time scheduling and obstacle avoidance.</p>
-        </article>
-        <article class="card">
-          <h3>GestureBridge</h3>
-          <p>A lightweight gesture recognition toolkit that lets robots respond to natural, on-the-fly human cues.</p>
-        </article>
-        <article class="card">
-          <h3>Rescue Rover</h3>
-          <p>An autonomous rover prototype designed for search and rescue missions in challenging terrains.</p>
-        </article>
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-intro">A selection of systems I've built&mdash;from prototype research platforms to production automation tools. Each project blends perception, control, and interface design.</p>
+        <div class="projects-grid">
+          <article class="project-card">
+            <h3>Atlas Autonomous Platform</h3>
+            <p>Modular AMR system for warehouse automation featuring real-time route planning, fleet coordination, and dynamic obstacle avoidance.</p>
+            <a class="btn btn-outline" href="https://github.com/RobotIngu/atlas" target="_blank" rel="noopener">View on GitHub</a>
+          </article>
+          <article class="project-card">
+            <h3>GestureBridge Toolkit</h3>
+            <p>Lightweight gesture recognition stack enabling robots to interpret natural human cues using monocular vision and temporal transformers.</p>
+            <a class="btn btn-outline" href="https://github.com/RobotIngu/gesturebridge" target="_blank" rel="noopener">View on GitHub</a>
+          </article>
+          <article class="project-card">
+            <h3>Rescue Rover</h3>
+            <p>Autonomous rover prototype designed for disaster response with terrain-aware locomotion, SLAM, and resilient communication links.</p>
+            <a class="btn btn-outline" href="https://github.com/RobotIngu/rescuerover" target="_blank" rel="noopener">View on GitHub</a>
+          </article>
+        </div>
       </div>
     </section>
 
     <section id="contact">
-      <h2>Contact</h2>
-      <ul class="contact-list">
-        <li>
-          <strong>Email</strong>
-          <span>hello@robosingu.io</span>
-        </li>
-        <li>
-          <strong>Office</strong>
-          <span>Intelligent Robotics Lab, Seoul Tech Innovation Center</span>
-        </li>
-        <li>
-          <strong>Follow</strong>
-          <span>GitHub: github.com/RobotIngu | LinkedIn: linkedin.com/in/RobotIngu</span>
-        </li>
-      </ul>
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-intro">Let's collaborate on the next generation of intelligent robotics. Reach out for research partnerships, consulting, or speaking engagements.</p>
+        <div class="contact-actions">
+          <a class="icon-btn" href="mailto:hello@robotingu.io">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 2v.01L12 13 4 6.01V6h16ZM4 18V8.236l7.378 6.642a1 1 0 0 0 1.244 0L20 8.236V18H4Z"/></svg>
+            Email
+          </a>
+          <a class="icon-btn" href="https://github.com/RobotIngu" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.162 19.492c.5.092.682-.217.682-.483 0-.237-.01-1.024-.015-1.858-2.776.603-3.362-1.196-3.362-1.196-.454-1.153-1.11-1.462-1.11-1.462-.908-.62.07-.607.07-.607 1.003.07 1.53 1.03 1.53 1.03.892 1.528 2.341 1.087 2.91.832.09-.647.35-1.086.636-1.337-2.217-.252-4.55-1.109-4.55-4.941 0-1.091.39-1.984 1.03-2.684-.104-.253-.447-1.27.098-2.647 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.56 9.56 0 0 1 2.504.337c1.909-1.295 2.748-1.026 2.748-1.026.546 1.377.203 2.394.1 2.647.64.7 1.029 1.593 1.029 2.684 0 3.842-2.337 4.685-4.563 4.933.36.31.68.923.68 1.86 0 1.344-.012 2.428-.012 2.758 0 .268.18.58.688.481A10 10 0 0 0 12 2Z"/></svg>
+            GitHub
+          </a>
+          <a class="icon-btn" href="https://www.linkedin.com/in/robotingu" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452H17.21v-5.4c0-1.288-.026-2.944-1.795-2.944-1.797 0-2.072 1.402-2.072 2.852v5.492H10.1V9h3.112v1.561h.045c.433-.82 1.494-1.686 3.073-1.686 3.289 0 3.894 2.166 3.894 4.982v6.595ZM6.349 7.433a1.905 1.905 0 1 1 0-3.81 1.905 1.905 0 0 1 0 3.81ZM7.763 20.452H4.933V9h2.83v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0Z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    © <span id="year"></span> RobotIngu. All rights reserved.
+    &copy; <span id="year"></span> RobotIngu. Crafted with curiosity and code.
   </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('primary-nav');
+
+    navToggle.addEventListener('click', () => {
+      const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!isExpanded));
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('#primary-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
