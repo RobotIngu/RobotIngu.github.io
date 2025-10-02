@@ -74,6 +74,9 @@
 
     .nav-links a {
       position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
       padding-bottom: 0.25rem;
     }
 
@@ -93,6 +96,17 @@
     .nav-links a:hover::after,
     .nav-links a:focus::after {
       transform: scaleX(1);
+    }
+
+    .nav-links a svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--accent);
+    }
+
+    .nav-links a:hover svg,
+    .nav-links a:focus svg {
+      transform: translateY(-1px);
     }
 
     .nav-toggle {
@@ -184,7 +198,7 @@
     }
 
     .section-intro {
-      max-width: 680px;
+      max-width: 720px;
       color: var(--muted);
       margin-bottom: 2.5rem;
     }
@@ -205,7 +219,7 @@
 
     .card h3 {
       font-size: 1.15rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
       color: var(--accent);
     }
 
@@ -214,6 +228,103 @@
       display: grid;
       gap: 0.45rem;
       color: var(--muted);
+    }
+
+    .detail-list {
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+      color: var(--muted);
+    }
+
+    .detail-list span {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 1.4rem;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 0.5rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.65rem;
+      top: 0.35rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16);
+    }
+
+    .timeline-item h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-item span {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .year-groups {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .year-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.6rem;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .year-card h3 {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .year-card ul {
+      list-style: none;
+      display: grid;
+      gap: 0.6rem;
+      color: var(--muted);
+    }
+
+    .year-card ul li {
+      line-height: 1.6;
+    }
+
+    .publication-entries {
+      gap: 0.8rem;
+      color: var(--text);
+    }
+
+    .publication-entries li strong {
+      display: block;
+      color: var(--text);
+    }
+
+    .publication-entries li span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-top: 0.2rem;
     }
 
     .projects-grid {
@@ -229,20 +340,26 @@
       border: 1px solid var(--border);
       box-shadow: 0 14px 32px rgba(15, 23, 42, 0.1);
       display: grid;
-      gap: 1rem;
+      gap: 0.85rem;
     }
 
     .project-card h3 {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
 
     .project-card p {
       color: var(--muted);
     }
 
-    .project-card .btn {
-      width: fit-content;
-      padding-inline: 1.1rem;
+    .project-tag {
+      display: inline-block;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
     }
 
     .contact-actions {
@@ -321,6 +438,11 @@
       .hero-actions {
         justify-content: flex-start;
       }
+
+      .contact-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -334,10 +456,48 @@
         <span></span>
       </button>
       <ul class="nav-links" id="primary-nav">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li>
+          <a href="#home">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3 10h3v9h5v-6h2v6h5v-9h3L12 3Z"/></svg>
+            <span>Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="#about">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-3.866 0-7 2.239-7 5v1h14v-1c0-2.761-3.134-5-7-5Z"/></svg>
+            <span>About</span>
+          </a>
+        </li>
+        <li>
+          <a href="#experience">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7V5a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v2h1a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1Zm2-2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H8V5Zm-2 6v6h12v-6H6Zm5 2h2v2h-2v-2Z"/></svg>
+            <span>Experience</span>
+          </a>
+        </li>
+        <li>
+          <a href="#awards">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 3V1H6v2H3v3a5 5 0 0 0 4 4.9A4 4 0 0 0 11 15v2H8a1 1 0 0 0 0 2h8a1 1 0 0 0 0-2h-3v-2a4 4 0 0 0 4-4.1 5 5 0 0 0 4-4.9V3h-3Zm-2 6a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V3h8v6ZM5 8.18A3 3 0 0 1 4 6V5h2v3.18ZM20 6a3 3 0 0 1-1 2.18V5h1v1Z"/></svg>
+            <span>Awards</span>
+          </a>
+        </li>
+        <li>
+          <a href="#projects">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 8.236L6.472 7 12 4.764 17.528 7 12 10.236ZM3 11l9 4.5 9-4.5v3l-9 4.5-9-4.5v-3Zm0 6 9 4.5 9-4.5v3L12 24 3 20v-3Z"/></svg>
+            <span>Projects</span>
+          </a>
+        </li>
+        <li>
+          <a href="#publications">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h6a2 2 0 0 1 2 2v16H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Zm8 0h6a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-6V2ZM7 6v2h4V6H7Zm8 0v2h4V6h-4Z"/></svg>
+            <span>Publications</span>
+          </a>
+        </li>
+        <li>
+          <a href="#contact">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-5l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm2 5v2h12V8H6Z"/></svg>
+            <span>Contact</span>
+          </a>
+        </li>
       </ul>
     </div>
   </header>
@@ -346,7 +506,7 @@
     <section id="home">
       <div class="container hero">
         <h1>Hello, I'm RobotIngu</h1>
-        <p>Robotics Engineer &amp; Researcher focused on bridging intelligent control, perception, and human-centered design. I build systems that collaborate with people and adapt to complex environments.</p>
+        <p>I am Ingu Choi, a robotics engineer and researcher delivering intelligent systems that collaborate with people, navigate complex spaces, and respond with precision.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#projects">View Projects</a>
           <a class="btn btn-outline" href="#contact">Get in Touch</a>
@@ -357,27 +517,119 @@
     <section id="about">
       <div class="container">
         <h2 class="section-title">About Me</h2>
-        <p class="section-intro">I explore how autonomous machines can perceive the world, understand human intent, and respond with dexterity. My work combines robotics, AI, and human-robot interaction to create meaningful, dependable systems.</p>
+        <p class="section-intro">I blend robotics, perception, and control to build responsive machines that elevate human capability. My work spans handheld surgical robots, mobile manipulation, and autonomous driving platforms.</p>
         <div class="about-grid">
           <article class="card">
             <h3>Profile</h3>
-            <p>Robotics engineer with practical experience delivering research prototypes into production-ready solutions. Passionate about advancing embodied intelligence and building teams that ship.</p>
+            <ul class="detail-list">
+              <li><span>Name:</span> Ingu Choi</li>
+              <li><span>Phone:</span> +82 10-7940-9640</li>
+              <li><span>Email:</span> cik970418@naver.com</li>
+            </ul>
           </article>
           <article class="card">
             <h3>Education</h3>
             <ul>
-              <li>M.S. Robotics Engineering, Seoul Tech University</li>
-              <li>B.S. Mechanical Engineering, KAIST</li>
+              <li>M.S. Electronic and Electrical Engineering, Korea University (2020.09 - 2022.08), GPA 4.0/4.5</li>
+              <li>B.S. Robotics, Kwangwoon University (2016.03 - 2020.02), GPA 3.59/4.5</li>
             </ul>
           </article>
           <article class="card">
-            <h3>Research Areas</h3>
+            <h3>Research Focus</h3>
             <ul>
               <li>Embodied AI and autonomous planning</li>
-              <li>Human-robot collaboration</li>
-              <li>Assistive and service robotics</li>
+              <li>Human-robot collaboration and safety</li>
+              <li>Precision mechatronics for medical robotics</li>
             </ul>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <p class="section-intro">A decade of hands-on research and engineering experience bridging robotics labs and industrial deployments.</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3>Visiting Researcher, Fraunhofer IFF</h3>
+            <span>2025.09 - 2026.02 &middot; Magdeburg, Germany</span>
+            <p>Advanced collaborative robotics for smart factories with a focus on human-aware planning.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Engineer, HL Mando</h3>
+            <span>2022.07 - 2025.08 &middot; Pangyo, Korea</span>
+            <p>Developed autonomous driving platforms integrating 3D SLAM, sensor fusion, and imitation learning.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Student Researcher, KIST Center for Intelligent and Interactive Robotics</h3>
+            <span>2020.09 - 2022.07 &middot; Seoul, Korea</span>
+            <p>Designed handheld surgical robots enabling hybrid force and vision control for minimally invasive care.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Intern Researcher, KIST Center for Intelligent and Interactive Robotics</h3>
+            <span>2020.03 - 2020.08 &middot; Seoul, Korea</span>
+            <p>Implemented tremor compensation algorithms and sensor-driven motion prediction for medical devices.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Student Researcher, KIST Center for Intelligent and Interactive Robotics</h3>
+            <span>2019.07 - 2019.08 &middot; Seoul, Korea</span>
+            <p>Explored haptic feedback and gesture recognition for human-robot interaction prototypes.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Student Researcher, Robit (Kwangwoon University Robot Club)</h3>
+            <span>2016.06 - 2020.02 &middot; Seoul, Korea</span>
+            <p>Led humanoid soccer and autonomous navigation projects, securing multiple RoboCup podiums.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards">
+      <div class="container">
+        <h2 class="section-title">Awards</h2>
+        <p class="section-intro">Recognition for impactful research, competition performance, and leadership across robotics communities.</p>
+        <div class="year-groups">
+          <div class="year-card">
+            <h3>2024</h3>
+            <ul>
+              <li>Best Paper Award, Dynamics, Control, and Robotics Division, KSME</li>
+            </ul>
+          </div>
+          <div class="year-card">
+            <h3>2023</h3>
+            <ul>
+              <li>Outstanding Researcher Award, HL Mando</li>
+            </ul>
+          </div>
+          <div class="year-card">
+            <h3>2021</h3>
+            <ul>
+              <li>Best Paper Award, Bioengineering Division, KSME</li>
+              <li>Excellence Award, RED SHOW, KROS</li>
+            </ul>
+          </div>
+          <div class="year-card">
+            <h3>2020</h3>
+            <ul>
+              <li>Best Paper Award, KROS</li>
+            </ul>
+          </div>
+          <div class="year-card">
+            <h3>2018</h3>
+            <ul>
+              <li>First Place, TurtleBot3 AutoRace, R-BIZ Challenge (Minister of Trade, Industry and Energy Award, MATLAB Special Award)</li>
+              <li>Third Place, Humanoid Soccer, RoboCup</li>
+            </ul>
+          </div>
+          <div class="year-card">
+            <h3>2017</h3>
+            <ul>
+              <li>Second Place, Humanoid Soccer, RoboCup</li>
+              <li>Fourth Place, Humanoid Soccer, Iran RoboCup</li>
+              <li>First Place, Humanoid Soccer, Korea RoboCup</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -385,23 +637,105 @@
     <section id="projects">
       <div class="container">
         <h2 class="section-title">Projects</h2>
-        <p class="section-intro">A selection of systems I've built&mdash;from prototype research platforms to production automation tools. Each project blends perception, control, and interface design.</p>
+        <p class="section-intro">Selected systems showcasing humanoid robotics, autonomous navigation, and surgical innovation.</p>
         <div class="projects-grid">
           <article class="project-card">
-            <h3>Atlas Autonomous Platform</h3>
-            <p>Modular AMR system for warehouse automation featuring real-time route planning, fleet coordination, and dynamic obstacle avoidance.</p>
-            <a class="btn btn-outline" href="https://github.com/RobotIngu/atlas" target="_blank" rel="noopener">View on GitHub</a>
+            <h3>Outdoor Autonomous Driving Robot</h3>
+            <span class="project-tag">CES 2025 Showcase</span>
+            <p>Integrated 3D SLAM, LiDAR camera fusion, and OpenStreetMap-based navigation with an imitation learning stack for reliable outdoor autonomy.</p>
           </article>
           <article class="project-card">
-            <h3>GestureBridge Toolkit</h3>
-            <p>Lightweight gesture recognition stack enabling robots to interpret natural human cues using monocular vision and temporal transformers.</p>
-            <a class="btn btn-outline" href="https://github.com/RobotIngu/gesturebridge" target="_blank" rel="noopener">View on GitHub</a>
+            <h3>6-DOF Intelligent Handheld Surgical Robot</h3>
+            <p>Delivered active tremor cancellation and hybrid force/vision control, contributing to multiple IEEE publications.</p>
           </article>
           <article class="project-card">
-            <h3>Rescue Rover</h3>
-            <p>Autonomous rover prototype designed for disaster response with terrain-aware locomotion, SLAM, and resilient communication links.</p>
-            <a class="btn btn-outline" href="https://github.com/RobotIngu/rescuerover" target="_blank" rel="noopener">View on GitHub</a>
+            <h3>3-DOF Handheld Surgical Robot</h3>
+            <p>Engineered precise step response and force control, supporting translational research recorded in IEEE Access.</p>
           </article>
+          <article class="project-card">
+            <h3>Vision-Based Pick-and-Place Robot</h3>
+            <p>Deployed end-effector cameras, depth sensing, and CAN/UDP integration for robust industrial manipulation.</p>
+          </article>
+          <article class="project-card">
+            <h3>Mobile Manipulator for Waste Sorting</h3>
+            <span class="project-tag">Best Paper Award</span>
+            <p>Combined object recognition with manipulator kinematics to automate waste classification at KRoC 2020.</p>
+          </article>
+          <article class="project-card">
+            <h3>TurtleBot3 Autonomous Mobile Robot</h3>
+            <span class="project-tag">R-BIZ Challenge Winner</span>
+            <p>Implemented lane detection and deep learning recognition pipelines with ROS MATLAB integration.</p>
+          </article>
+          <article class="project-card">
+            <h3>Humanoid Robot Platform</h3>
+            <span class="project-tag">RoboCup Podium</span>
+            <p>Designed balance control and soccer strategies for humanoid robots, achieving multiple international medals.</p>
+          </article>
+          <article class="project-card">
+            <h3>Allegro Hand Control</h3>
+            <p>Created a finger control GUI and remote manipulation interface over TCP/IP for dexterous hand research.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="container">
+        <h2 class="section-title">Publications</h2>
+        <p class="section-intro">Peer-reviewed contributions spanning surgical robotics, motion prediction, and autonomous navigation.</p>
+        <div class="year-groups">
+          <div class="year-card">
+            <h3>2024</h3>
+            <ul class="publication-entries">
+              <li>
+                <strong>Design and Implementation of an Outdoor Autonomous Driving Framework on Edge Devices Using OpenStreetMap</strong>
+                <span>I. Choi, J. Kang, S. Ko &middot; KSME &middot; Best Paper Award</span>
+              </li>
+              <li>
+                <strong>Hybrid Vision/Force Control Strategy for Handheld Robotic Devices for Probe-Based Confocal Laser Endomicroscopy</strong>
+                <span>I. Choi, E. Kim, S. Yang &middot; IEEE/RSJ IROS</span>
+              </li>
+            </ul>
+          </div>
+          <div class="year-card">
+            <h3>2022</h3>
+            <ul class="publication-entries">
+              <li>
+                <strong>Contact Force Control During Soft Tissue Interaction Using a Handheld Robot</strong>
+                <span>I. Choi, E. Kim, M. Lim, S. Yang &middot; UR 2022</span>
+              </li>
+            </ul>
+          </div>
+          <div class="year-card">
+            <h3>2021</h3>
+            <ul class="publication-entries">
+              <li>
+                <strong>Active Tremor Cancellation of Handheld Microsurgical Robots</strong>
+                <span>I. Choi, E. Kim, S. Yang &middot; KSME &middot; Best Paper Award</span>
+              </li>
+              <li>
+                <strong>Design and Control of Fully Handheld Microsurgical Robot for Active Tremor Cancellation</strong>
+                <span>E. Kim, I. Choi, S. Yang &middot; IEEE ICRA 2021</span>
+              </li>
+              <li>
+                <strong>Evaluation of Applied Force During Nasopharyngeal Swab Sampling Using Handheld Sensorized Instrument</strong>
+                <span>C. Park, I. Choi, S. Yang &middot; IEEE EMBC 2021</span>
+              </li>
+            </ul>
+          </div>
+          <div class="year-card">
+            <h3>2020</h3>
+            <ul class="publication-entries">
+              <li>
+                <strong>Design and Control of a Waste Sorting Robot Based on a 5-DOF Mobile Manipulator</strong>
+                <span>I. Choi, J. Baek, S. Yang &middot; KRoC 2020 &middot; Best Paper Award</span>
+              </li>
+              <li>
+                <strong>Prediction of Voluntary Motion Using Deep Neural Networks</strong>
+                <span>D. Yoon, E. Kim, I. Choi, S. Han, S. Yang &middot; IEEE Access 2020</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -409,9 +743,13 @@
     <section id="contact">
       <div class="container">
         <h2 class="section-title">Contact</h2>
-        <p class="section-intro">Let's collaborate on the next generation of intelligent robotics. Reach out for research partnerships, consulting, or speaking engagements.</p>
+        <p class="section-intro">Collaborate on the next wave of intelligent robotics. Reach out for partnerships, consulting, or speaking engagements.</p>
         <div class="contact-actions">
-          <a class="icon-btn" href="mailto:hello@robotingu.io">
+          <a class="icon-btn" href="tel:+821079409640">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 .97-.26c1.07.29 2.21.45 3.4.45a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C11.85 22 2 12.15 2 1a1 1 0 0 1 1-1h4.62a1 1 0 0 1 1 1c0 1.19.16 2.33.45 3.4a1 1 0 0 1-.26.97l-2.19 2.19Z"/></svg>
+            Call
+          </a>
+          <a class="icon-btn" href="mailto:cik970418@naver.com">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 2v.01L12 13 4 6.01V6h16ZM4 18V8.236l7.378 6.642a1 1 0 0 0 1.244 0L20 8.236V18H4Z"/></svg>
             Email
           </a>
@@ -453,3 +791,47 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
